@@ -8,4 +8,6 @@ import Main from "./sections/Main.vue";
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss">
+@import "./assets/global.scss";
+</style>

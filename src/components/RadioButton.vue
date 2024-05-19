@@ -18,7 +18,7 @@ function select() {
       v-model="picked"
       @change="select"
     />
-    <label for="metric">Metric</label>
+    <label for="metric" class="">Metric</label>
 
     <input
       type="radio"
@@ -32,10 +32,16 @@ function select() {
 </template>
 
 <style scoped lang="scss">
-input[type="radio"] {
-  // height: 31px;
-  // width: 31px;
-  // vertical-align: middle;
-  // margin-right: 10px;
-}
+// input[type="radio"] {
+//   height: 31px;
+//   width: 31px;
+//   vertical-align: middle;
+
+//   // margin-right: 10px;
+//   &:checked {
+//     accent-color: red;
+//     height: 15px;
+//     width: 15px;
+//   }
+// }
 </style>

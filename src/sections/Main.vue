@@ -2,13 +2,13 @@
 import BMICard from "../components/BMICard.vue";
 </script>
 <template>
-  <section class="h-screen">
+  <section class="h-screen w-full">
     <div class="bgr-rectangle"></div>
     <div class="pt-16 pb-36">
       <img src="/images/logo.svg" />
     </div>
-    <div class="flex items-center gap-40">
-      <div class="w-[465px]">
+    <div class="lg:flex items-center justify-center gap-40 md:grid">
+      <div class="basis-2/4">
         <h1 class="heading heading-xl">Body Mass Index Calculator</h1>
         <p>
           Better understand your weight in relation to your height using our

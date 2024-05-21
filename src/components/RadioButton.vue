@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 
-const picked = ref(null);
+const picked = ref("metric");
 const emit = defineEmits(["select"]);
 
 function select() {
@@ -10,7 +10,7 @@ function select() {
 </script>
 
 <template>
-  <div class="">
+  <div class="mb-5">
     <input
       type="radio"
       id="metric"

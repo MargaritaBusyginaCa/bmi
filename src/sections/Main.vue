@@ -1,5 +1,5 @@
 <script setup>
-import Calculator from "../components/Calculator.vue";
+import BMICard from "../components/BMICard.vue";
 </script>
 <template>
   <section class="h-screen">
@@ -17,7 +17,7 @@ import Calculator from "../components/Calculator.vue";
           your overall health and well-being.
         </p>
       </div>
-      <Calculator />
+      <BMICard />
     </div>
   </section>
 </template>

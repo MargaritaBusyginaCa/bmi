@@ -10,38 +10,35 @@ function select() {
 </script>
 
 <template>
-  <div class="mb-5">
-    <input
-      type="radio"
-      id="metric"
-      value="metric"
-      v-model="picked"
-      @change="select"
-    />
-    <label for="metric" class="">Metric</label>
-
-    <input
-      type="radio"
-      id="imperial"
-      value="imperial"
-      v-model="picked"
-      @change="select"
-    />
-    <label for="imperial">Imperial</label>
+  <div class="mb-5 grid grid-cols-2">
+    <div>
+      <input
+        type="radio"
+        id="metric"
+        value="metric"
+        v-model="picked"
+        class="radio checked:bg-indigo-500"
+        @change="select"
+      />
+      <label for="metric">Metric</label>
+    </div>
+    <div>
+      <input
+        type="radio"
+        id="imperial"
+        value="imperial"
+        v-model="picked"
+        class="radio checked:bg-indigo-500"
+        @change="select"
+      />
+      <label for="imperial">Imperial</label>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-// input[type="radio"] {
-//   height: 31px;
-//   width: 31px;
-//   vertical-align: middle;
-
-//   // margin-right: 10px;
-//   &:checked {
-//     accent-color: red;
-//     height: 15px;
-//     width: 15px;
-//   }
-// }
+input[type="radio"] {
+  margin-right: 15px;
+  vertical-align: top;
+}
 </style>

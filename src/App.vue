@@ -7,7 +7,7 @@ import Limitations from "./sections/Limitations.vue";
 
 <template>
   <div class="">
-    <!-- <Main /> -->
+    <Main />
     <About />
     <Limitations />
   </div>

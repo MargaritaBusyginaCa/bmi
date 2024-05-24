@@ -16,7 +16,7 @@ const props = defineProps({
       <label :for="id">{{ label }}</label>
     </p>
     <div v-if="isDouble">
-      <div>
+      <div class="">
         <input :id="id" type="number" />
         <span>{{ unit1 }}</span>
       </div>
@@ -57,11 +57,22 @@ const props = defineProps({
     font-size: 20px;
     font-weight: 600;
     top: 15%;
-    right: 4%;
+    right: 6%;
   }
   label {
     color: #5e6e85;
     margin-bottom: 8px;
   }
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 </style>

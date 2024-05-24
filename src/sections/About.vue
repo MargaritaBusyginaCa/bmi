@@ -31,10 +31,12 @@ const cardsContent = ref([
         />
       </div>
       <div class="basis-[45%] px-[24px]">
-        <h1 class="font-semibold color-black leading-tight text-[32px] my-8">
+        <h1
+          class="font-semibold color-black leading-tight text-[32px] lg:text-[48px] my-8"
+        >
           What your BMI result means
         </h1>
-        <p>
+        <p class="body-m">
           A BMI range of 18.5 to 24.9 is considered a 'healthy weight.'
           Maintaining a healthy weight may lower your chances of experiencing
           health issues later on, such as obesity and type 2 diabetes. Aim for a

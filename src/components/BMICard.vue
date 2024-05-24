@@ -4,105 +4,84 @@ import FormInput from "./FormInput.vue";
 import { ref, computed } from "vue";
 
 const pickedMeasureSystem = ref("metric");
-// const height = ref(170);
-// const weight = ref(70);
-function selectSystem(value) {
-  pickedMeasureSystem.value = value;
-}
-// const bmi = computed(() => {
-//   switch (pickedMeasureSystem.value) {
-//     case "imperial":
-//       return 0;
-//       break;
-//     case "metric":
-//       const h = height.value / 100;
-//       const h2 = h * h;
-//       const num = weight.value / h2;
-//       return Math.round(num * 10) / 10;
-//   }
-// });
-const isImperial = computed(() =>
-  pickedMeasureSystem.value === "imperial" ? true : false
-);
+const isImperial = computed(() => pickedMeasureSystem.value === "imperial");
+
 const cm = ref(0);
 const kg = ref(0);
 const ft = ref(0);
 const inch = ref(0);
-//declare stones
 const st = ref(0);
-//declare pounds
 const lbs = ref(0);
 const error = ref("");
 const bmiResult = ref(0);
+
+function selectSystem(value) {
+  pickedMeasureSystem.value = value;
+}
+
+function updateMeasurement(refVar, value, callback) {
+  refVar.value = value;
+  callback();
+}
+
 function getCm(input) {
-  cm.value = input.value;
-  calculateBmiMetric();
+  updateMeasurement(cm, input.value, calculateBmiMetric);
 }
+
 function getKg(input) {
-  kg.value = input.value;
-  calculateBmiMetric();
+  updateMeasurement(kg, input.value, calculateBmiMetric);
 }
+
 function getFtInch(input) {
   ft.value = input[0] ?? 0;
   inch.value = input[1] ?? 0;
   calculateBmiImperial();
 }
+
 function getStLbs(input) {
   st.value = input[0] ?? 0;
   lbs.value = input[1] ?? 0;
   calculateBmiImperial();
 }
+
 function valueCheck(unit, minValue, maxValue) {
-  if (unit < minValue) {
-    error.value = "The value you entered is too small";
-    console.log(error.value);
+  if (unit.value < minValue) {
+    error.value = `The value ${unit} is too small. Minimum value is ${minValue}.`;
     return false;
-  } else if (unit > maxValue) {
-    error.value = "The value you entered is too big";
-    console.log(error.value);
+  } else if (unit.value > maxValue) {
+    error.value = `The value ${unit} is too big. Maximum value is ${maxValue}.`;
     return false;
   } else {
     return true;
   }
 }
+
 function calculateBmiMetric() {
-  const cmCheck = valueCheck(cm.value, 95, 240);
-  const kgCheck = valueCheck(kg.value, 20, 800);
+  const cmCheck = valueCheck(cm, 95, 240);
+  const kgCheck = valueCheck(kg, 20, 800);
   if (cmCheck && kgCheck) {
     runFormula(cm.value, kg.value);
   } else {
     bmiResult.value = 0;
   }
 }
+
 function runFormula(cm, kg) {
   const meters = cm / 100;
-  bmiResult.value = kg / (meters * meters);
-  bmiResult.value = Math.round(bmiResult.value * 10) / 10;
+  bmiResult.value = Math.round((kg / (meters * meters)) * 10) / 10;
 }
+
 function calculateBmiImperial() {
-  const ftCheck = valueCheck(ft.value, 3, 8);
-  const inchCheck = valueCheck(inch.value, 0, 12);
-  let stCheck;
-  let lbsCheck;
-  if (st.value <= 0 && lbs.value <= 0) {
-    stCheck = false;
-    lbsCheck = false;
-  } else {
-    stCheck = true;
-    lbsCheck = true;
-  }
+  const ftCheck = valueCheck(ft, 3, 8);
+  const inchCheck = valueCheck(inch, 0, 12);
+  const stCheck = st.value > 0 || lbs.value > 0;
 
-  if (ftCheck && inchCheck && stCheck && lbsCheck) {
+  if (ftCheck && inchCheck && stCheck) {
     const cm = (ft.value * 12 + inch.value) * 2.54;
-
-    let kg = 0;
-    if (st.value <= 0) {
-      kg = lbs.value * 0.453592;
-    } else if (lbs.value <= 0) {
-      kg = st.value * 6.35029;
-    } else {
-      kg = (st.value * 14 + lbs.value) * 0.453592;
-    }
+    const kg =
+      st.value > 0
+        ? (st.value * 14 + lbs.value) * 0.453592
+        : lbs.value * 0.453592;
     runFormula(cm, kg);
   } else {
     bmiResult.value = 0;
@@ -162,18 +141,17 @@ function calculateBmiImperial() {
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .calculator-card {
   color: white;
   padding: 24px;
   border-radius: 20px;
-  background: rgb(52, 95, 246);
   background: linear-gradient(
     90deg,
     rgba(52, 95, 246, 1) 0%,
     rgba(88, 125, 255, 1) 48%
   );
-  // border-radius: 10px 80px 80px 10px;
   .body-m {
     color: white;
   }

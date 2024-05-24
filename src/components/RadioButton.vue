@@ -10,7 +10,7 @@ function select() {
 </script>
 
 <template>
-  <div class="mb-5 grid grid-cols-2">
+  <div class="mb-5 grid grid-cols-2 md:flex md:gap-[50px] lg:grid lg:gap-0">
     <div>
       <input
         type="radio"

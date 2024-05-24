@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
 
 const props = defineProps({
   id: String,
@@ -8,6 +8,15 @@ const props = defineProps({
   unit2: String,
   isDouble: Boolean,
 });
+const emit = defineEmits(["input-change"]);
+const inputValue = ref(null);
+const inputValue2 = ref(null);
+function inputChange() {
+  emit(
+    "input-change",
+    props.isDouble ? [inputValue.value, inputValue2.value] : inputValue
+  );
+}
 </script>
 
 <template>
@@ -15,18 +24,23 @@ const props = defineProps({
     <p>
       <label :for="id">{{ label }}</label>
     </p>
-    <div v-if="isDouble">
-      <div class="">
-        <input :id="id" type="number" />
+    <div v-if="isDouble" class="flex gap-[20px] md:gap-[10px] lg:gap-[10px]">
+      <div>
+        <input
+          :id="id"
+          type="number"
+          v-model="inputValue"
+          @input="inputChange"
+        />
         <span>{{ unit1 }}</span>
       </div>
       <div>
-        <input type="number" />
+        <input type="number" v-model="inputValue2" @input="inputChange" />
         <span>{{ unit2 }}</span>
       </div>
     </div>
     <div v-else>
-      <input :id="id" type="number" />
+      <input :id="id" type="number" v-model="inputValue" @input="inputChange" />
       <span>{{ unit1 }}</span>
     </div>
   </div>

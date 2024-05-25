@@ -12,7 +12,6 @@ const ft = ref(0);
 const inch = ref(0);
 const st = ref(0);
 const lbs = ref(0);
-const error = ref("");
 const bmiResult = ref(0);
 
 function selectSystem(value) {
@@ -46,10 +45,8 @@ function getStLbs(input) {
 
 function valueCheck(unit, minValue, maxValue) {
   if (unit.value < minValue) {
-    error.value = `The value ${unit} is too small. Minimum value is ${minValue}.`;
     return false;
   } else if (unit.value > maxValue) {
-    error.value = `The value ${unit} is too big. Maximum value is ${maxValue}.`;
     return false;
   } else {
     return true;

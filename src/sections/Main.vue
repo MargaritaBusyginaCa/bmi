@@ -2,19 +2,20 @@
 import BMICard from "../components/BMICard.vue";
 </script>
 <template>
-  <section class="lg:py-[80px]">
+  <section class="lg:py-[100px]">
     <div
       class="bgr-rectangle w-full h-full md:h-[80%] lg:w-[60%] lg:h-[70%]"
     ></div>
 
-    <div class="px-[24px] lg:flex justify-center gap-[70px] items-baseline">
-      <div class="md:w-3/4 text-center m-auto lg:text-left lg:m-0 basis-[30%]">
+    <div class="px-[24px] lg:flex justify-center gap-[70px] items-center">
+      <div
+        class="md:w-3/4 text-center m-auto lg:text-left lg:m-0 basis-[30%] relative"
+      >
         <div
-          class="pt-[32px] px-[24px] flex justify-center lg:justify-start lg:px-0 lg:pt-[70px] lg:pb-[30px]"
+          class="flex justify-center py-7 lg:absolute top-[-70px] left-0 lg:py-0"
         >
           <img src="/images/logo.svg" alt="logo" />
         </div>
-
         <h1 class="text-[48px] font-semibold leading-tight my-[24px]">
           Body Mass Index Calculator
         </h1>

@@ -84,6 +84,39 @@ function calculateBmiImperial() {
     bmiResult.value = 0;
   }
 }
+const bmiText = computed(() => {
+  if (bmiResult.value === 0) {
+    return "....";
+  } else if (bmiResult.value < 18.5) {
+    return "you might be underweight";
+  } else if (bmiResult.value >= 18.5 && bmiResult.value <= 24.9) {
+    return "you're in your healthy weight";
+  } else if (bmiResult.value >= 25 && bmiResult.value <= 29.9) {
+    return "you might be overweight";
+  } else {
+    return "you might be obese";
+  }
+});
+
+const healthyWeight = computed(() => {
+  let heightCm;
+  const minBmi = 18.5;
+  const maxBmi = 24.9;
+  if (isImperial.value) {
+    heightCm =
+      inch.value > 0 ? ft.value * 30.48 + inch.value * 2.54 : ft.value * 30.48;
+  } else {
+    heightCm = cm.value;
+  }
+  const heightM = heightCm / 100;
+  const minWeight = Math.round(minBmi * Math.pow(heightM, 2));
+  const maxWeight = Math.round(maxBmi * Math.pow(heightM, 2));
+  if (minWeight === 0 || maxWeight === 0) {
+    return ["...", "..."];
+  } else {
+    return [minWeight, maxWeight];
+  }
+});
 </script>
 
 <template>
@@ -131,9 +164,10 @@ function calculateBmiImperial() {
         <p class="text-[48px] font-semibold">{{ bmiResult }}</p>
       </div>
       <div class="">
-        Your BMI suggests you're a healthy weight. Your ideal weight is between
-        <span class="font-bold">63.3kgs</span> -
-        <span class="font-bold">85.2kgs</span>.
+        Your BMI suggests {{ bmiText }}. Your ideal weight is between
+        <span class="font-bold">{{ healthyWeight[0] }}</span> -
+        <span class="font-bold">{{ healthyWeight[1] }}</span
+        >.
       </div>
     </div>
   </div>

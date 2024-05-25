@@ -7,7 +7,9 @@ import BMICard from "../components/BMICard.vue";
       class="bgr-rectangle w-full h-full md:h-[80%] lg:w-[60%] lg:h-[70%]"
     ></div>
 
-    <div class="px-[24px] lg:flex justify-center gap-[70px] items-center">
+    <div
+      class="px-[24px] lg:flex justify-center gap-[70px] items-start lg:pt-10"
+    >
       <div
         class="md:w-3/4 text-center m-auto lg:text-left lg:m-0 basis-[30%] relative"
       >
